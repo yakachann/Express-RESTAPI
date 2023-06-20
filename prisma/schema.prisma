@@ -1,0 +1,29 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  //@idで主キーの設定、@defaultでデフォルト値（今回はautoincriment()=自動インクリメント）
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  quantity  Int      @default(0)
+  price     Int      @default(999)
+  //現在時刻
+  createdAt DateTime @default(now())
+  category Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+}
+
+model Category {
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
+  products Product[]
+}

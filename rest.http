@@ -1,0 +1,29 @@
+GET http://localhost:3000/api/products
+
+###
+GET http://localhost:3000/api/products/3
+
+###
+POST http://localhost:3000/api/products
+//リクエストヘッダーで本文の形式を指定
+//{}はリクエストbody（リクエスト本文のデータの部分）
+Content-Type: application/json
+
+{
+  "name": "iphone 12 pro",
+  "price": 999,
+  "categoryId": 1
+}
+
+###
+DELETE  http://localhost:3000/api/products/2
+
+###
+PATCH   http://localhost:3000/api/products/3
+Content-Type: application/json
+
+{
+  "name": "iPad Pro Max",
+  "price": 1299,
+  "categoryId": 2
+}
